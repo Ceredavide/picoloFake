@@ -7,9 +7,9 @@ import {
     Alert
 } from 'react-native';
 
-const ButtonText = ({text}) => {
+const ButtonText = ({text, getRandomArbitrary}) => {
     return (
-        <TouchableOpacity onPress={() => Alert.alert('bella')} style={styles.button}>
+        <TouchableOpacity onPress={() => getRandomArbitrary()} style={styles.button}>
             <Text>
                 {text}
             </Text>

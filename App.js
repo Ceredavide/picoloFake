@@ -1,52 +1,60 @@
-import React from 'react';
+import React from "react";
+import { StyleSheet, SafeAreaView, View, StatusBar } from "react-native";
+
 import {
-  StyleSheet,
-  View,
-  Alert
-} from 'react-native';
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 
-import Phrase from './components/Phrase';
-import ButtonText from './components/ButtonText';
-
-
+import Phrase from "./components/Phrase";
+import ButtonText from "./components/ButtonText";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       text: [
-        'bella',
-        'come va',
-        'tutto bene graz',
-        '6x8',
-        'mamacita',
-        'mandarino',
-        'macbook',
-        'pritha'
+        "bevi trecento drink se sei gay come loris di pardo",
+        "come va",
+        "tutto bene graz",
+        "6x8",
+        "mamacita",
+        "mandarino",
+        "macbook",
+        "pritha"
       ],
-      randomNumber: Math.random() * 7 | 0,
-    }
+      randomNumber: (Math.random() * 7) | 0
+    };
   }
 
   getRandomArbitrary = () => {
-    let n = Math.random() * this.state.text.length | 0;
-    this.setState({ randomNumber: n })
-  }
+    let n = (Math.random() * this.state.text.length) | 0;
+    this.setState({ randomNumber: n });
+  };
   render() {
+    const { text, randomNumber } = this.state;
+
     return (
-      <View style={styles.container}>
-        <Phrase text={this.state.text[this.state.randomNumber]} />
-        <ButtonText text={'ciao'} style={styles.button} getRandomArbitrary={this.getRandomArbitrary} />
-      </View>
+      <SafeAreaView style={{ backgroundColor: "#bedae6", flex: 1 }}>
+        <View style={styles.container}>
+        <StatusBar backgroundColor="#bedae6" barStyle="dark-content" />
+          <Phrase text={text[randomNumber]} />
+          <ButtonText
+            text={"ciao"}
+            getRandomArbitrary={this.getRandomArbitrary}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
+    margin: hp("5%"),
+    backgroundColor: "#bedae6",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  button: { marginTop: hp("3%") }
 });

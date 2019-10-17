@@ -1,23 +1,32 @@
-import React from 'react';
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
 
 import {
-    StyleSheet,
-    View,
-    Text,
-} from 'react-native';
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 
-const Phrase = ({text}) => {
-    return (
-        <View>
-            <Text style={styles.text}>{text}</Text>
-        </View>
-    )
-}
+const Phrase = ({ text }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>{text}</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    text : {
-        fontSize: 34
-    }
-})
+  container: {
+    padding: wp("5%"),
+    backgroundColor: "#f0c443",
+    height: hp("60%"),
+    width: wp("90%"),
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  text: {
+    fontSize: hp("5%")
+  }
+});
 
-export default Phrase
+export default Phrase;

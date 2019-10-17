@@ -1,31 +1,35 @@
-import React from 'react';
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import {
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Alert
-} from 'react-native';
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 
-const ButtonText = ({text, getRandomArbitrary}) => {
-    return (
-        <TouchableOpacity onPress={() => getRandomArbitrary()} style={styles.button}>
-            <Text>
-                {text}
-            </Text>
-        </TouchableOpacity>
-    )
-}
+const ButtonText = ({ text, getRandomArbitrary }) => {
+  return (
+    <TouchableOpacity
+      onPress={() => getRandomArbitrary()}
+      style={styles.button}
+    >
+      <Text style={styles.text}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
-    button: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 60,
-        width: 140,
-        backgroundColor: 'red',
-        marginTop: 200
-    }
-})
+  button: {
+    marginTop: hp("8%"),
+    height: hp("9%"),
+    width: wp("50%"),
+    borderRadius: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "red"
+  },
+  text: {
+      fontSize: hp("3%")
+  }
+});
 
-export default ButtonText
+export default ButtonText;

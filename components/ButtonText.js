@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "red"
+    backgroundColor: "#ff8085"
   },
   text: {
       fontSize: hp("3%")

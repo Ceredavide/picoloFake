@@ -1,4 +1,9 @@
+import 'package:PicoloFake/constants/ColorPalettes.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'package:hexcolor/hexcolor.dart';
+
+import "constants/ListPhrases.dart";
 
 void main() {
   runApp(MyApp());
@@ -9,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Picolo Fake',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -50,16 +55,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
+  String randomPhrase = listPhrases[Random().nextInt(listPhrases.length)];
+
+  int randomNumber;
+
+  static int firstNumber = Random().nextInt(colorPalettes.length);
+
+  String randomBackgroundColor = colorPalettes[firstNumber][0];
+
+  String randomContentColor = colorPalettes[firstNumber][1];
+
+  void _changePhrase() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      randomPhrase = listPhrases[Random().nextInt(listPhrases.length)];
+      randomNumber = Random().nextInt(colorPalettes.length);
+      randomBackgroundColor = colorPalettes[randomNumber][0];
+      randomContentColor = colorPalettes[randomNumber][1];
     });
   }
 
@@ -72,11 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      backgroundColor: Hexcolor(randomBackgroundColor),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -98,19 +106,21 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              '$randomPhrase',
+              style: TextStyle(
+                  fontFamily: "Modelica",
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Hexcolor(randomContentColor)),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        backgroundColor: Hexcolor(randomContentColor),
+        onPressed: _changePhrase,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.cached),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
